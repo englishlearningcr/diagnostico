@@ -8,43 +8,54 @@
 
   <style>
     :root{
-      --bg:#f4f6f9;
-      --card:#ffffff;
-      --text:#1f2937;
-      --muted:#4b5563;
-      --accent:#22c55e;
-      --accent2:#2563eb;
-      --border:rgba(0,0,0,.08);
-      --shadow: 0 10px 26px rgba(0,0,0,.10);
+      --bg1:#0b1220;
+      --bg2:#070c18;
+      --card:rgba(255,255,255,.06);
+      --text:#eaf0ff;
+      --muted:#b7c2e3;
+      --border:rgba(255,255,255,.12);
+      --green1:#22c55e;
+      --green2:#16a34a;
+      --blue:#3b82f6;
+      --red:#ef4444;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(1100px 520px at 20% 10%, rgba(59,130,246,.18), transparent 60%),
+        radial-gradient(900px 520px at 90% 20%, rgba(239,68,68,.14), transparent 55%),
+        radial-gradient(900px 520px at 70% 90%, rgba(34,197,94,.14), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
       color:var(--text);
       line-height:1.45;
     }
     a{color:inherit}
     .wrap{max-width:980px;margin:0 auto;padding:24px}
     .top{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-      padding:6px 0 18px;
+      display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+      padding:10px 0 22px;
     }
     .brand{
       font-weight:900;
       font-size:20px;
-      letter-spacing:.2px;
+      letter-spacing:.3px;
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
-    .brand .cr{color:var(--accent)}
+    .brand .blue{color:var(--blue)}
+    .brand .red{color:var(--red)}
     .badge{
       font-size:12px;
       padding:6px 10px;
       border:1px solid var(--border);
       border-radius:999px;
       color:var(--muted);
-      background:#fff;
+      background: rgba(255,255,255,.04);
     }
+
     .hero{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
@@ -52,53 +63,63 @@
       align-items:stretch;
     }
     @media (max-width: 860px){ .hero{grid-template-columns:1fr} }
+
     .card{
       background: var(--card);
       border:1px solid var(--border);
       border-radius:18px;
       padding:20px;
-      box-shadow: var(--shadow);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
     }
+
     .kicker{
-      color:var(--accent2);
+      color: rgba(147,197,253,.95);
       font-weight:900;
       font-size:12px;
       letter-spacing:.12em;
       text-transform:uppercase;
     }
+
     h1{margin:6px 0 10px;font-size:38px;line-height:1.05}
     @media (max-width: 860px){ h1{font-size:32px} }
     h2{margin:8px 0 8px;font-size:22px}
-    .sub{color:var(--muted);font-size:16px;margin:0 0 14px}
+
+    .sub{color:var(--muted);font-size:16px;margin:0 0 16px}
+
     .ctaRow{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
       padding:14px 16px;border-radius:14px;
       text-decoration:none;font-weight:900;
-      transition: transform .08s ease, box-shadow .2s ease;
+      transition: transform .08s ease, filter .2s ease;
       min-width:220px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
     }
     .btn:active{transform:scale(.98)}
     .btnPrimary{
-      background: linear-gradient(90deg, rgba(34,197,94,.98), rgba(34,197,94,.82));
-      color:#05210f;border:none;
-      box-shadow: 0 10px 18px rgba(34,197,94,.18);
+      border:none;
+      background: linear-gradient(90deg,var(--green1),var(--green2));
+      color:#05210f;
+      box-shadow: 0 12px 20px rgba(34,197,94,.18);
     }
-    .btnGhost{
-      background:#fff;color:var(--text);
-      border:1px solid var(--border);
-    }
+    .btnGhost:hover{filter:brightness(1.05)}
+
     .small{font-size:12.5px;color:var(--muted);margin-top:10px}
+
     .pill{
       display:inline-block;
       font-size:12px;
       padding:6px 10px;
       border-radius:999px;
       border:1px solid var(--border);
-      background:#fff;
+      background:rgba(255,255,255,.03);
       color:var(--muted);
       margin:4px 6px 0 0;
     }
+
     .grid{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -106,30 +127,37 @@
       margin-top:14px;
     }
     @media (max-width: 860px){ .grid{grid-template-columns:1fr} }
+
     .list{margin:10px 0 0;padding-left:18px;color:var(--muted)}
     .list li{margin:8px 0}
-    .divider{height:1px;background:rgba(0,0,0,.08);margin:18px 0}
+
+    .divider{height:1px;background:rgba(255,255,255,.10);margin:18px 0}
+
     .price{
       display:flex;align-items:baseline;justify-content:space-between;gap:10px;
       margin:14px 0 0;
       padding:12px 14px;border-radius:14px;
-      border:1px dashed rgba(0,0,0,.16);
-      background: #fbfcff;
+      border:1px dashed rgba(255,255,255,.18);
+      background: rgba(255,255,255,.03);
     }
     .price strong{font-size:28px}
+
     .foot{
       margin:18px 0 0;
-      color:rgba(17,24,39,.70);
+      color:rgba(255,255,255,.70);
       font-size:12px;
     }
-    .foot a{color:rgba(17,24,39,.80);text-decoration:underline}
+    .foot a{color:rgba(147,197,253,.95);text-decoration:underline}
   </style>
 </head>
 
 <body>
   <div class="wrap">
     <div class="top">
-      <div class="brand">English Coaching <span class="cr">CR</span></div>
+      <div class="brand">
+        <span class="blue">English Coaching</span>
+        <span class="red">CR</span>
+      </div>
       <div class="badge">Costa Rica · Atención por WhatsApp</div>
     </div>
 
@@ -143,7 +171,9 @@
         </p>
 
         <div class="ctaRow">
-          <a class="btn btnPrimary" href="https://wa.me/50672758657?text=Hola%20Allan%2C%20quiero%20solicitar%20el%20diagn%C3%B3stico%20personalizado%20de%20ingl%C3%A9s.%20%C2%BFC%C3%B3mo%20funciona%3F" target="_blank" rel="noopener">
+          <a class="btn btnPrimary"
+             href="https://wa.me/50672758657?text=Hola%20Allan%2C%20quiero%20solicitar%20el%20diagn%C3%B3stico%20personalizado%20de%20ingl%C3%A9s.%20%C2%BFC%C3%B3mo%20funciona%3F"
+             target="_blank" rel="noopener noreferrer">
             💬 Hablar por WhatsApp
           </a>
           <a class="btn btnGhost" href="#como-funciona">Ver cómo funciona</a>
@@ -188,13 +218,19 @@
 
           <div class="divider"></div>
 
-          <a class="btn btnPrimary" href="https://wa.me/50672758657?text=Hola%20Allan%2C%20quiero%20solicitar%20el%20diagn%C3%B3stico%20personalizado%20de%20ingl%C3%A9s.%20%C2%BFC%C3%B3mo%20funciona%3F" target="_blank" rel="noopener">
+          <a class="btn btnPrimary"
+             href="https://wa.me/50672758657?text=Hola%20Allan%2C%20quiero%20solicitar%20el%20diagn%C3%B3stico%20personalizado%20de%20ingl%C3%A9s.%20%C2%BFC%C3%B3mo%20funciona%3F"
+             target="_blank" rel="noopener noreferrer">
             💬 Solicitar diagnóstico por WhatsApp
           </a>
 
           <p class="foot">
             *Servicio de orientación educativa. Los resultados dependen de tu práctica y constancia.
           </p>
+
+          <div class="pill">100% personalizado</div>
+          <div class="pill">Enfoque realista</div>
+          <div class="pill">Sin promesas mágicas</div>
         </div>
       </div>
 
@@ -225,12 +261,6 @@
         <p class="sub" style="margin-top:8px">
           Un documento claro con tu nivel aproximado, tus bloqueos principales y pasos prácticos para avanzar.
         </p>
-
-        <div class="divider"></div>
-
-        <div class="pill">100% personalizado</div>
-        <div class="pill">Enfoque realista</div>
-        <div class="pill">Sin promesas mágicas</div>
       </div>
     </div>
 
